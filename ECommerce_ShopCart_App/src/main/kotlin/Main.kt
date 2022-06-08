@@ -6,5 +6,6 @@ fun  main(args: Array<String>){
 
     cart.add(item1)
     cart.add(item2)
-    print(cart.getElements())
+    cart.add(item1)
+    print(cart.printElements())
 }

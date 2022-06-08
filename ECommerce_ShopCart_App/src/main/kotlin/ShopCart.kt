@@ -6,44 +6,38 @@ interface Cart<T> {
 interface Item {
     var id: String
     var name: String
-    var quantity: Int
-
-    fun addQuantity()
 }
 
-class ShopItem(override var id: String, override var name: String) : Item {
-    override var quantity: Int = 0
-    override fun addQuantity() {
-        quantity++
-    }
+class ShopItem(override var id: String,
+               override var name: String) : Item {
 }
 
 
 class ShopCart : Cart<Item> {
     private var totalPrice: Double = 0.0
-    private var elements: MutableList<Item> = mutableListOf()
-    private var existElement: Boolean = false
+    private var elements: MutableMap<Item, Int> = mutableMapOf()
 
     override fun add(element: Item) {
-        if (elements.contains(element)) {
-            element.addQuantity()
-            elements[elements.indexOf(element)] = element
+        if (elements.contains(element)){
+            elements[element] = elements.getValue(element) + 1
         } else {
-            elements.add(element)
+            elements.put(element, 1)
         }
     }
 
     override fun remove(element: Item) {
-        if (elements.contains(element)) {
+        /*if (elements.contains(element)) {
             elements.removeAt(elements.indexOf(element))
         } else {
             elements.add(element)
-        }
+        }*/
     }
 
     fun printElements() {
-        for (element in elements) {
-            println(element.name)
+        for ((itens, quantity) in elements) {
+            print(itens.name+" ")
+            print(quantity)
+            println()
         }
     }
 }
