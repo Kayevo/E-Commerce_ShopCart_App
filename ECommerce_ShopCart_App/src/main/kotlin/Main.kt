@@ -7,5 +7,6 @@ fun  main(args: Array<String>){
     cart.add(item1)
     cart.add(item2)
     cart.add(item1)
+    cart.remove(item1)
     print(cart.printElements())
 }

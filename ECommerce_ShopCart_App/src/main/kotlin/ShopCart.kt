@@ -26,18 +26,18 @@ class ShopCart : Cart<Item> {
     }
 
     override fun remove(element: Item) {
-        /*if (elements.contains(element)) {
-            elements.removeAt(elements.indexOf(element))
-        } else {
-            elements.add(element)
-        }*/
+        if(elements.contains(element)){
+            if(elements[element] == 1){
+                elements.remove(element)
+            }else{
+                elements[element] = elements.getValue(element) - 1
+            }
+        }
     }
 
     fun printElements() {
         for ((itens, quantity) in elements) {
-            print(itens.name+" ")
-            print(quantity)
-            println()
+            print("Name: ${itens.name} Quantity: ${quantity} \n")
         }
     }
 }
